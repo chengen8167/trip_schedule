@@ -10,6 +10,7 @@
             --accent: #e67e22;
             --bg: #f4f7f6;
             --active: #ffffff;
+            --route-bg: #ecf0f1;
         }
         body {
             font-family: -apple-system, "Noto Sans TC", "Microsoft JhengHei", sans-serif;
@@ -68,6 +69,23 @@
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 移動地名標籤樣式 */
+        .route-header {
+            background: var(--route-bg);
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            border-left: 4px solid var(--primary);
+        }
+        .route-header span {
+            color: var(--accent);
+            margin: 0 8px;
         }
 
         /* 時間軸樣式 */
@@ -145,6 +163,7 @@
 </div>
 
 <div id="day1" class="content-section active">
+    <div class="route-header">熊本機場 <span>➔</span> 熊本市區</div>
     <div class="timeline">
         <div class="time-item">
             <span class="time-label">18:15</span>
@@ -155,18 +174,19 @@
             <span class="time-label">19:30</span>
             <div class="event-title">搭乘利木津巴士</div>
             <div class="event-desc">往市中心「櫻町總站」出發。</div>
-            <a href="https://maps.app.goo.gl/E2z8VYNYmGZNAcvs9" class="nav-btn">📍 櫻町總站位置</a>
+            <a href="https://maps.app.goo.gl/2yeoU3X1QDURbBrm7" class="nav-btn">📍 櫻町總站位置</a>
         </div>
         <div class="time-item">
             <span class="time-label">20:30</span>
             <div class="event-title">飯店 Check-in & 晚餐</div>
             <div class="event-desc">推薦去下通商店街吃晚餐，好好休息。</div>
-            <a href="https://maps.app.goo.gl/i8RZYETfaG2ck5d17" class="nav-btn">📍 Shimotori Shopping Arcade</a>
+            <a href="https://maps.app.goo.gl/PRTU7Wz0QDURp_O8Q" class="nav-btn">📍 Shimotori Shopping Arcade</a>
         </div>
     </div>
 </div>
 
 <div id="day2" class="content-section">
+    <div class="route-header">熊本市區 <span>➔</span> 阿蘇 <span>➔</span> 別府</div>
     <div class="timeline">
         <div class="time-item">
             <span class="time-label">09:00</span>
@@ -177,13 +197,13 @@
             <span class="time-label">10:30</span>
             <div class="event-title">阿蘇草千里之濱</div>
             <div class="event-desc">看馬、草原散步、吃赤牛丼午餐。</div>
-            <a href="https://maps.app.goo.gl/mrP6Lg4V93bh8FPu5" class="nav-btn">📍 草千里導航</a>
+            <a href="https://maps.app.goo.gl/XathGaooQTURTo7Ev" class="nav-btn">📍 草千里導航</a>
         </div>
         <div class="time-item">
             <span class="time-label">11:30</span>
             <div class="event-title">瀬の本登山口</div>
             <div class="event-desc">轉縣道11</div>
-            <a href="https://maps.app.goo.gl/V3uMRMuRzdhhywqe7" class="nav-btn">📍 瀬の本登山口</a>
+            <a href="https://maps.app.goo.gl/V4V4oXwU7Vn4V4V4" class="nav-btn">📍 瀬の本登山口</a>
         </div>
         <div class="time-item">
             <span class="time-label">14:30</span>
@@ -199,12 +219,13 @@
 </div>
 
 <div id="day3" class="content-section">
+    <div class="route-header">別府 <span>➔</span> 九州自然動物園 <span>➔</span> 福岡</div>
     <div class="timeline">
         <div class="time-item">
             <span class="time-label">09:30</span>
             <div class="event-title">九州自然動物園 (Safari)</div>
             <div class="event-desc">必玩叢林巴士，近距離餵食猛獸。</div>
-            <a href="https://maps.app.goo.gl/LyzRYCWoRjURzQqJ9" class="nav-btn">📍 動物園導航</a>
+            <a href="https://maps.app.goo.gl/LyzRYCWoRjURzQqJ" class="nav-btn">📍 動物園導航</a>
         </div>
         <div class="time-item">
             <span class="time-label">14:30</span>
@@ -225,12 +246,13 @@
 </div>
 
 <div id="day4" class="content-section">
+    <div class="route-header">福岡市區全日 <span>(採買與觀光)</span></div>
     <div class="timeline">
         <div class="time-item">
             <span class="time-label">10:00</span>
             <div class="event-title">福岡購物/太宰府</div>
             <div class="event-desc">可選：太宰府天滿宮、Lalaport 鋼彈。</div>
-            <a href="https://maps.app.goo.gl/daaw2I2RQTURZx5S8" class="nav-btn">📍 天神購物區</a>
+            <a href="https://maps.app.goo.gl/daaw2I2RQTURZx5S" class="nav-btn">📍 天神購物區</a>
         </div>
         <div class="time-item">
             <span class="time-label">15:00</span>
@@ -244,6 +266,7 @@
 </div>
 
 <div id="day5" class="content-section">
+    <div class="route-header">福岡 <span>➔</span> 熊本市區</div>
     <div class="timeline">
         <div class="time-item">
             <span class="time-label">09:00</span>
@@ -254,7 +277,7 @@
             <span class="time-label">11:00</span>
             <div class="event-title">熊本城 & 櫻之馬場</div>
             <div class="event-desc">古城巡禮、城彩苑午餐。</div>
-            <a href="https://maps.app.goo.gl/Wco6Ag70QDURMOTN9" class="nav-btn">📍 熊本城位置</a>
+            <a href="https://maps.app.goo.gl/Wco6Ag70QDURMOTN" class="nav-btn">📍 熊本城位置</a>
         </div>
         <div class="time-item">
             <span class="time-label">15:00</span>
@@ -265,12 +288,13 @@
 </div>
 
 <div id="day6" class="content-section">
+    <div class="route-header">熊本市區 <span>➔</span> 熊本機場</div>
     <div class="timeline">
         <div class="time-item">
             <span class="time-label">10:00</span>
             <div class="event-title">熊本熊廣場 (部長室)</div>
             <div class="event-desc">查看部長表演時間，最後伴手禮。</div>
-            <a href="https://maps.app.goo.gl/0yu7wAv0QDUR9Ml78" class="nav-btn">📍 部長室位置</a>
+            <a href="https://maps.app.goo.gl/0yu7wAv0QDUR9Ml7h" class="nav-btn">📍 部長室位置</a>
         </div>
         <div class="time-item">
             <span class="time-label">16:30</span>
@@ -303,6 +327,3 @@
 
 </body>
 </html>
-
-
-

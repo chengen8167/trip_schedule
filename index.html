@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>九州自駕之旅 v1.2</title>
+    <title>九州自駕之旅 v1.3</title>
     <style>
         :root {
             --primary: #2c3e50;
@@ -56,7 +56,35 @@
             background: var(--accent);
             font-weight: bold;
         }
-
+        /* 交通資訊卡片樣式 */
+        .info-card {
+            background: var(--transport-bg);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .info-card h2 {
+            font-size: 1.1rem;
+            margin-top: 0;
+            color: var(--accent);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 5px;
+        }
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+        .info-table td {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .info-table td:first-child {
+            font-weight: bold;
+            width: 80px;
+            color: #7f8c8d;
+        }
         /* 大範圍移動地名標籤 */
         .route-banner {
             background: var(--route-bg);
@@ -154,7 +182,8 @@
 </header>
 
 <div class="tabs">
-    <button class="tab-btn active" onclick="openDay(event, 'day1')">5/24(日)</button>
+    <button class="tab-btn active" onclick="openDay(event, 'transport')">交通總覽</button>
+    <button class="tab-btn" onclick="openDay(event, 'day1')">5/24(日)</button>
     <button class="tab-btn" onclick="openDay(event, 'day2')">5/25(一)</button>
     <button class="tab-btn" onclick="openDay(event, 'day3')">5/26(二)</button>
     <button class="tab-btn" onclick="openDay(event, 'day4')">5/27(三)</button>
@@ -162,6 +191,32 @@
     <button class="tab-btn" onclick="openDay(event, 'day6')">5/29(五)</button>
 </div>
 
+<div id="transport" class="content-section active">
+    <div class="info-card">
+        <h2>✈️ 班機資訊</h2>
+        <table class="info-table">
+            <tr><td>去程</td><td>日期：<br>班機：<br>時間：</td></tr>
+            <tr><td>回程</td><td>日期：<br>班機：<br>時間：</td></tr>
+            <tr><td>備註</td><td></td></tr>
+        </table>
+    </div>
+
+    <div class="info-card">
+        <h2>🚗 租車資訊 (Alphard)</h2>
+        <table class="info-table">
+            <tr><td>取車</td><td>時間：<br>地點：</td></tr>
+            <tr><td>還車</td><td>時間：<br>地點：</td></tr>
+            <tr><td>保險</td><td></td></tr>
+            <tr><td>合約號</td><td></td></tr>
+        </table>
+    </div>
+    
+    <div class="memo-box">
+        💡 <strong>小提醒：</strong><br>
+        1. 取車時請出示台灣駕照「正本」及「日文譯本」。<br>
+        2. Alphard 車身較大，進入停車場請留意限高（建議 2.1m 以上）。
+    </div>
+</div>
 <div id="day1" class="content-section active">
     <div class="route-banner">台中 <span>➔</span> 熊本機場 <span>➔</span> 熊本市區</div>
     <div class="timeline">
@@ -331,6 +386,7 @@
 
 </body>
 </html>
+
 
 
 

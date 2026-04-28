@@ -1,0 +1,10 @@
+﻿################################################################################
+# 這個 .gitignore 檔案由 Microsoft(R) Visual Studio 自動建立。
+################################################################################
+
+/.vs
+/.vs/CopilotSnapshots
+/.vs/ProjectSettings.json
+/.vs/slnx.sqlite
+/.vs/trip_schedule
+/.vs/VSWorkspaceState.json

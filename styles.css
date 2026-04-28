@@ -1,0 +1,6 @@
+.tab-btn:focus-visible,
+.nav-btn:focus-visible {
+    outline: 3px solid rgba(230,126,34,0.8);
+    outline-offset: 2px;
+    border-radius: 6px;
+}

@@ -1,9 +1,19 @@
-l<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- 建議改為允許縮放，提升可及性 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>九州自駕之旅</title>
+    <meta name="description" content="九州自駕行程：班機、租車、每日行程與地點連結，包含地圖指引與小提醒。">
+    <meta property="og:title" content="九州自駕之旅詳細行程 v1.5">
+    <meta property="og:description" content="九州自駕行程：班機、租車、每日行程與地點連結，包含地圖指引與小提醒。">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://maps.app.goo.gl" crossorigin>
+    <!-- 若未外部化 CSS，可把此處改為 link 到外部樣式檔 -->
+    <!-- <link rel="stylesheet" href="styles.min.css"> -->
+    <!-- theme-color 用於行動裝置工具列 -->
+    <meta name="theme-color" content="#2c3e50">
     <style>
         :root {
             --primary: #2c3e50;
@@ -11,7 +21,8 @@ l<!DOCTYPE html>
             --bg: #f4f7f6;
             --active: #ffffff;
             --route-bg: #ecf0f1;
-            --transport-bg: #ffffff; /* 補上漏掉的背景變數 */
+            --transport-bg: #ffffff;
+            --tap-size: 44px; /* 建議觸控目標最小尺寸 */
         }
         body {
             font-family: -apple-system, "Noto Sans TC", "Microsoft JhengHei", sans-serif;
@@ -51,6 +62,8 @@ l<!DOCTYPE html>
             background: none;
             cursor: pointer;
             outline: none;
+            min-height: var(--tap-size);
+            min-width: var(--tap-size);
         }
         .tab-btn.active {
             color: white;
@@ -164,6 +177,9 @@ l<!DOCTYPE html>
             text-decoration: none;
             font-size: 0.85rem;
             margin-top: 8px;
+            min-height: var(--tap-size);
+            min-width: var(--tap-size);
+            padding: 12px 16px;
         }
         .memo-box {
             background: #fff;
@@ -174,6 +190,10 @@ l<!DOCTYPE html>
             font-size: 0.9rem;
             line-height: 1.5;
         }
+        /* 尊重使用者減少動作偏好 */
+        @media (prefers-reduced-motion: reduce) {
+          * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+        }
     </style>
 </head>
 <body>
@@ -182,15 +202,15 @@ l<!DOCTYPE html>
     <h1>九州自駕之旅詳細行程 v1.5</h1>
 </header>
 
-<div class="tabs">
-    <button class="tab-btn active" onclick="openDay(event, 'transport')">交通總覽</button>
-    <button class="tab-btn" onclick="openDay(event, 'day1')">5/24(日)</button>
-    <button class="tab-btn" onclick="openDay(event, 'day2')">5/25(一)</button>
-    <button class="tab-btn" onclick="openDay(event, 'day3')">5/26(二)</button>
-    <button class="tab-btn" onclick="openDay(event, 'day4')">5/27(三)</button>
-    <button class="tab-btn" onclick="openDay(event, 'day5')">5/28(四)</button>
-    <button class="tab-btn" onclick="openDay(event, 'day6')">5/29(五)</button>
-</div>
+<nav class="tabs" role="tablist" aria-label="行程分頁">
+    <button class="tab-btn active" id="tab-transport" aria-controls="transport">交通總覽</button>
+    <button class="tab-btn" id="tab-day1" aria-controls="day1">5/24(日)</button>
+    <button class="tab-btn" id="tab-day2" aria-controls="day2">5/25(一)</button>
+    <button class="tab-btn" id="tab-day3" aria-controls="day3">5/26(二)</button>
+    <button class="tab-btn" id="tab-day4" aria-controls="day4">5/27(三)</button>
+    <button class="tab-btn" id="tab-day5" aria-controls="day5">5/28(四)</button>
+    <button class="tab-btn" id="tab-day6" aria-controls="day6">5/29(五)</button>
+</nav>
 
 <div id="transport" class="content-section active">
     <div class="info-card">
@@ -386,11 +406,50 @@ l<!DOCTYPE html>
         evt.currentTarget.className += " active";
     }
 </script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const tabs = Array.from(document.querySelectorAll('.tab-btn'));
+    const panels = Array.from(document.querySelectorAll('.content-section'));
+
+    function activate(index) {
+        tabs.forEach((t, i) => {
+            const sel = i === index;
+            t.classList.toggle('active', sel);
+            t.setAttribute('aria-selected', sel ? 'true' : 'false');
+            t.setAttribute('tabindex', sel ? '0' : '-1');
+            panels[i].classList.toggle('active', sel);
+            panels[i].setAttribute('aria-hidden', (!sel).toString());
+        });
+        tabs[index].focus();
+        history.replaceState(null, '', '#' + panels[index].id);
+    }
+
+    document.querySelector('.tabs').addEventListener('click', (e) => {
+        const idx = tabs.indexOf(e.target);
+        if (idx >= 0) activate(idx);
+    });
+
+    // 鍵盤支援（左右 / Home / End）
+    tabs.forEach((tab, i) => {
+        tab.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') activate((i + 1) % tabs.length);
+            if (e.key === 'ArrowLeft') activate((i - 1 + tabs.length) % tabs.length);
+            if (e.key === 'Home') activate(0);
+            if (e.key === 'End') activate(tabs.length - 1);
+        });
+    });
+
+    // 自動為外部連結加上安全屬性
+    document.querySelectorAll('a[href^="http"]').forEach(a => {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+    });
+
+    // 若 URL 有 hash，啟動
+    const start = panels.findIndex(p => p.id === location.hash.replace('#',''));
+    if (start >= 0) activate(start);
+});
+</script>
 
 </body>
 </html>
-
-
-
-
-

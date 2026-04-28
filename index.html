@@ -216,6 +216,31 @@
             border-radius: 6px;
         }
 
+        /* 天氣卡片樣式 */
+        .weather-grid {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+        .weather-btn {
+            background: #27ae60;
+            color: #fff;
+            border-radius: 6px;
+            padding: 10px 14px;
+            text-decoration: none;
+            font-size: 0.95rem;
+            display: inline-block;
+        }
+        .weather-btn--volcano {
+            background: #d35400;
+        }
+        .weather-btn:focus-visible {
+            outline: 3px solid rgba(230,126,34,0.8);
+            outline-offset: 2px;
+            border-radius: 6px;
+        }
+
         @media (prefers-reduced-motion: reduce) {
           * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
         }
@@ -226,7 +251,7 @@
 
 <main id="main">
     <header>
-        <h1>九州自駕之旅詳細行程 v1.5</h1>
+        <h1>九州自駕之旅詳細行程 v1.7</h1>
     </header>
 
     <nav class="tabs" role="tablist" aria-label="行程分頁">
@@ -263,6 +288,17 @@
                 ジュニアシート 兒童安全座椅（1,100円（税込10％）／1回・1台）　1台<br>
                 </td></tr>
             </table>
+        </div>
+
+        <div class="info-card">
+            <h2><span aria-hidden="true">🌤️</span> 日本氣象即時查詢</h2>
+            <div class="weather-grid" role="list">
+                <a role="listitem" href="https://www.jma.go.jp/bosai/wdist/#lat:32.88&lon:130.85&zoom:9" class="nav-btn weather-btn" target="_blank" rel="noopener noreferrer" aria-label="日本氣象廳（熊本）">📍 日本氣象廳 (熊本)</a>
+                <a role="listitem" href="https://tenki.jp/forecast/9/46/8610/43100/" class="nav-btn weather-btn" target="_blank" rel="noopener noreferrer" aria-label="Tenki.jp（熊本市）">📍 Tenki.jp (熊本市)</a>
+                <a role="listitem" href="https://tenki.jp/forecast/9/47/8310/44213/" class="nav-btn weather-btn" target="_blank" rel="noopener noreferrer" aria-label="Tenki.jp（由布市）">📍 Tenki.jp (由布市)</a>
+                <a role="listitem" href="https://tenki.jp/forecast/9/47/8310/44202/" class="nav-btn weather-btn" target="_blank" rel="noopener noreferrer" aria-label="Tenki.jp（別府市）">📍 Tenki.jp (別府市)</a>
+                <a role="listitem" href="https://tenki.jp/mountain/famous100/9/46/197.html" class="nav-btn weather-btn weather-btn--volcano" target="_blank" rel="noopener noreferrer" aria-label="阿蘇山區專用預報">⛰️ 阿蘇山區專用預報</a>
+            </div>
         </div>
 
         <div class="memo-box" aria-live="polite">

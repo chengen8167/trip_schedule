@@ -1,6 +1,18 @@
 .tab-btn:focus-visible,
-.nav-btn:focus-visible {
-    outline: 3px solid rgba(230,126,34,0.8);
-    outline-offset: 2px;
+.nav-btn:focus-visible,
+a:focus-visible {
+    outline: 3px solid rgba(230,126,34,0.9);
+    outline-offset: 3px;
     border-radius: 6px;
+}
+
+.skip-link:focus {
+    position: static;
+    left: auto;
+    width: auto;
+    height: auto;
+    padding: 8px 12px;
+    background: #fff;
+    color: var(--primary);
+    z-index: 9999;
 }
